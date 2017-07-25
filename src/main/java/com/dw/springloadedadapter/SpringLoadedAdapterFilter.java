@@ -1,4 +1,4 @@
-package com.dw.springloadedadapter.filter;
+package com.dw.springloadedadapter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
