@@ -23,17 +23,15 @@ consumes:
 #                                           Paths                              #
 ################################################################################
 paths:
-  /spring-loaded/put: 
-    post: 
+  /spring-loaded: 
+    put: 
       tags:
         - 'Spring-loaded'
       summary: "Uploaded file add/replace with given path."
       description: "
         - Client invoke api to given files and path details as multipart form data. \n
         - From multipart form data, one request key available which containe json string include array of change. \n
-        - If change.type is CREATED then change.file add on server`s given change.path location. /n
-        - If change.type is UPDATED then change.file replace on server`s given change.path location. /n
-        - If change.type is DELETED then delete file/dir on server`s given change.path location.
+        - If change.type is PUT then change.file add or replace on server`s given change.path location. 
         
         #### Authorization
 
@@ -64,7 +62,10 @@ paths:
           schema: 
             $ref: "#/definitions/Error"
         400: 
-          description: "- If request not found in form data or request json string not parsable"
+          description: "
+          - If request not found in form data or request json string not parsable \n
+          - If request array size not match with total no of uploaded file. \n
+          - If uploaded file name not fount in request detail."
           schema: 
             $ref: "#/definitions/Error"
   
@@ -122,4 +123,4 @@ definitions:
         type: string
       type:
         type: string
-        description: "it is enum to hold CREATED/UPDATED/DELETED constants"
+        description: "it is enum to hold PUT/DELETED constants"
